@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javascript Library</title>
+</head>
+
+<body>
+  <main>
+    <h1>Library</h1>
+    <h2>Add books</h2>
+    <form action="#">
+      <label for="title">Title</label>
+      <input id="title" name="book_title" type="text" placeholder="Book title..." required>
+      <label for="author">Author</label>
+      <input id="author" name="book_author" type="text" placeholder="Book author..." required>
+      <label for="pages">Pages</label>
+      <input id="pages" name="book_pages" type="number" placeholder="Number of pages..." required min="1">
+      <fieldset>
+        <legend>Have you read this book?</legend>
+        <ul>
+          <li>
+            <label for="read_true">Yes</label>
+            <input type="radio" name="book_status" value="true" id="read_true">
+          </li>
+          <li>
+            <label for="read_false">No</label>
+            <input type="radio" name="book_status" value="false" id="read_false">
+          </li>
+        </ul>
+      </fieldset>
+      <button type="submit">Add Book</button>
+    </form>
+    </div>
+  </main>
+</body>
+
+</html>
