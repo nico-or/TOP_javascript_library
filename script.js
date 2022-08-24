@@ -1,4 +1,23 @@
-const library = []
+function Library(selector) {
+  this.node = document.getElementById(selector)
+  this.books = [];
+
+  this.addBook = (book) => this.books.push(book)
+
+  // deletes all books in the table
+  this.reset = () => {
+    let rows = Array.from(this.node.rows)
+    rows.forEach( row => row.remove() )
+  }
+
+  // append all books to the table
+  this.render = () => {
+    this.reset()  // avoid duplicates
+    for (const book of this.books) {
+      this.node.appendChild(book.toTableRow())
+    }
+  }
+}
 
 function Book(title, author, pages, status) {
   this.title = title
@@ -24,17 +43,6 @@ function Book(title, author, pages, status) {
 
     return row
   }
-}
-
-library.push(new Book('1984', 'George Orwell', 120, true))
-library.push(new Book('I Robot', 'Isaac Asimov', 150, false))
-
-// select shelve container
-const shelve = document.getElementById('shelve')
-
-// appends lirary books to the shelve container
-for (const book of library) {
-  shelve.appendChild(book.toTableRow())
 }
 
 // handle input elements
@@ -64,6 +72,9 @@ function formRadio(name){
   }
 }
 
+// create Library
+const library = new Library('shelve')
+
 // select form inputs
 let title = new formInput('title');
 let author = new formInput('author');
@@ -82,6 +93,9 @@ submit.addEventListener("click", e => {
     pages.value(),
     status.value()
   )
+
+  library.addBook(book)
+  library.render()
 
   title.reset();
   author.reset();
