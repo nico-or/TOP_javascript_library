@@ -4,6 +4,8 @@ Simple implementation of a Javascript book management web page.
 
 The excercise objective is to practice javascript's prototies and DOM manipulation.
 
+[Test the app](https://nico-or.github.io/TOP_javascript_library/)
+
 ## Requirements:
 - Users can
   - add books
