@@ -69,3 +69,22 @@ let title = new formInput('title');
 let author = new formInput('author');
 let pages = new formInput('pages');
 let status = new formRadio('book_status');
+
+// submit buttons
+let submit = document.querySelector('form button')
+
+submit.addEventListener("click", e => {
+  e.preventDefault()
+
+  let book = new Book(
+    title.value(),
+    author.value(),
+    pages.value(),
+    status.value()
+  )
+
+  title.reset();
+  author.reset();
+  pages.reset();
+  status.reset();
+});
