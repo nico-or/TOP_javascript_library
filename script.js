@@ -36,3 +36,36 @@ const shelve = document.getElementById('shelve')
 for (const book of library) {
   shelve.appendChild(book.toTableRow())
 }
+
+// handle input elements
+function formInput(name){
+  this.node = document.getElementById(name);
+
+  this.value = () => this.node.value;
+  this.reset = () => this.node.value = "";
+}
+
+// handle radio buttons
+function formRadio(name){
+  this.node = document.getElementsByName('book_status')
+
+  this.value = () => {
+    for (const radio of this.node) {
+      if (radio.checked) {
+        return radio.value == "true" ? true : false
+      }
+    }
+  }
+
+  this.reset = () => {
+    for (const radio of this.node){
+      radio.checked = false
+    }
+  }
+}
+
+// select form inputs
+let title = new formInput('title');
+let author = new formInput('author');
+let pages = new formInput('pages');
+let status = new formRadio('book_status');
