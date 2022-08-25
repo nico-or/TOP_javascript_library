@@ -125,8 +125,7 @@ form.addEventListener("submit", (e) => {
 const table = document.querySelector("table");
 table.addEventListener("click", (e) => {
   if (e.target.type == "submit") {
-    let tr = e.target.parentElement.parentElement
-    library.removeBookByIndex(tr.dataset.bookIndex)
+    library.removeBookByIndex(e.target.dataset.bookIndex)
   }
 });
 
