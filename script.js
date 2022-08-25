@@ -108,6 +108,8 @@ form.addEventListener("submit", e => {
 // handle delete button clicks
 const table = document.querySelector('table')
 table.addEventListener('click', e => {
-  let tr = e.target.parentElement.parentElement
-  library.removeBookByIndex(tr.dataset.bookIndex)
+  if (e.target.type == "submit"){
+    let tr = e.target.parentElement.parentElement
+    library.removeBookByIndex(tr.dataset.bookIndex)
+  }
 })
