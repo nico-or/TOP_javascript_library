@@ -9,6 +9,12 @@ function Library(selector) {
     this.render()
   }
 
+  this.toggleStatusByIndex = (index) => {
+    book = this.books[index]
+    book.status = !book.status
+    this.render()
+  }
+
   // deletes all books in the table
   this.reset = () => {
     let rows = Array.from(this.node.rows)
@@ -27,8 +33,18 @@ function Library(selector) {
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
-      <td>${book.status}</td>
+      <td></td>
       <td></td>`
+
+      // add book status checkbox
+      node = tr.children[3]
+      if (book.status == true){
+        node.innerHTML = `Yes`
+      }else{
+        node.innerHTML = `
+          <label for="status_${i}">mark as read</label>
+          <input type="checkbox" name="status" id="status_${i}" data-book-index=${i}>`
+      }
 
       // add delete button
       node = tr.children[4]
@@ -111,4 +127,9 @@ table.addEventListener('click', e => {
     let tr = e.target.parentElement.parentElement
     library.removeBookByIndex(tr.dataset.bookIndex)
   }
+})
+
+table.addEventListener('change', e => {
+  index = e.target.dataset.bookIndex
+  library.toggleStatusByIndex(index)
 })

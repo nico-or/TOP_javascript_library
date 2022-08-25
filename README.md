@@ -14,9 +14,6 @@ The excercise objective is to practice javascript's prototies and DOM manipulati
 - Books are created with a form that accepts name, author, number of pages and read status
 - There site displays the collection of added books
 
-## TODO
-- [ ] allow toggling of read status in table view (this should also modify the in-memory object)
-
 ---
 
 [This exercise description page]
