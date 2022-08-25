@@ -18,7 +18,7 @@ function Library(selector) {
   // deletes all books in the table
   this.reset = () => {
     let rows = Array.from(this.node.rows)
-    rows.forEach( row => row.remove() )
+    rows.forEach(row => row.remove())
   }
 
   // append all books to the table
@@ -29,7 +29,7 @@ function Library(selector) {
       let tr = document.createElement('tr')
 
       // FIXME library shouldn't have knowledge of representation
-      tr.innerHTML=`
+      tr.innerHTML = `
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
@@ -40,7 +40,7 @@ function Library(selector) {
       node = tr.children[3]
       if (book.status == true){
         node.innerHTML = `Yes`
-      }else{
+      } else {
         node.innerHTML = `
           <label for="status_${i}">mark as read</label>
           <input type="checkbox" name="status" id="status_${i}" data-book-index=${i}>`
@@ -50,6 +50,7 @@ function Library(selector) {
       node = tr.children[4]
       node.innerHTML = `<button data-book-index=${i}>delete</button>`
 
+      // add row to table
       this.node.appendChild(tr)
     }
   }
@@ -63,7 +64,7 @@ function Book(title, author, pages, status) {
 }
 
 // handle input elements
-function formInput(name){
+function formInput(name) {
   this.node = document.getElementById(name);
 
   this.value = () => this.node.value;
@@ -71,7 +72,7 @@ function formInput(name){
 }
 
 // handle radio buttons
-function formRadio(name){
+function formRadio(name) {
   this.node = document.getElementsByName('book_status')
 
   this.value = () => {
@@ -83,7 +84,7 @@ function formRadio(name){
   }
 
   this.reset = () => {
-    for (const radio of this.node){
+    for (const radio of this.node) {
       radio.checked = false
     }
   }
@@ -123,7 +124,7 @@ form.addEventListener("submit", e => {
 // handle delete button clicks
 const table = document.querySelector('table')
 table.addEventListener('click', e => {
-  if (e.target.type == "submit"){
+  if (e.target.type == "submit") {
     let tr = e.target.parentElement.parentElement
     library.removeBookByIndex(tr.dataset.bookIndex)
   }
