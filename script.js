@@ -82,9 +82,9 @@ let pages = new formInput('pages');
 let status = new formRadio('book_status');
 
 // submit buttons
-let submit = document.querySelector('form button')
+let form = document.querySelector('#newBookForm')
 
-submit.addEventListener("click", e => {
+form.addEventListener("submit", e => {
   e.preventDefault()
 
   let book = new Book(
