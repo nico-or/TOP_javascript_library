@@ -30,10 +30,9 @@ function Library(selector) {
       <td>${book.status}</td>
       <td></td>`
 
-      button = document.createElement('button')
-      button.innerText = 'remove'
-      button.setAttribute('data-book-index', i)
-      tr.lastElementChild.appendChild(button)
+      // add delete button
+      node = tr.children[4]
+      node.innerHTML = `<button data-book-index=${i}>delete</button>`
 
       this.node.appendChild(tr)
     }
