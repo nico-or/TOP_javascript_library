@@ -4,6 +4,11 @@ function Library(selector) {
 
   this.addBook = (book) => this.books.push(book)
 
+  this.removeBookByIndex = (index) => {
+    this.books.splice(index, 1)
+    this.render()
+  }
+
   // deletes all books in the table
   this.reset = () => {
     let rows = Array.from(this.node.rows)
@@ -13,8 +18,24 @@ function Library(selector) {
   // append all books to the table
   this.render = () => {
     this.reset()  // avoid duplicates
-    for (const book of this.books) {
-      this.node.appendChild(book.toTableRow())
+    for (let i = 0; i < this.books.length; i++) {
+      const book = this.books[i];
+      let tr = document.createElement('tr')
+
+      // FIXME library shouldn't have knowledge of representation
+      tr.innerHTML=`
+      <td>${book.title}</td>
+      <td>${book.author}</td>
+      <td>${book.pages}</td>
+      <td>${book.status}</td>
+      <td></td>`
+
+      button = document.createElement('button')
+      button.innerText = 'remove'
+      button.setAttribute('data-book-index', i)
+      tr.lastElementChild.appendChild(button)
+
+      this.node.appendChild(tr)
     }
   }
 }
@@ -24,25 +45,6 @@ function Book(title, author, pages, status) {
   this.author = author
   this.pages = pages
   this.status = status
-
-  // returns a <tr> element with the book info
-  this.toTableRow = function () {
-    // returns a <td> element with input text
-    function createTableData(text) {
-      let node = document.createElement('td')
-      node.textContent = text
-      return node
-    }
-
-    let row = document.createElement('tr')
-
-    row.appendChild(createTableData(this.title))
-    row.appendChild(createTableData(this.author))
-    row.appendChild(createTableData(this.pages))
-    row.appendChild(createTableData(this.status))
-
-    return row
-  }
 }
 
 // handle input elements
@@ -102,3 +104,10 @@ form.addEventListener("submit", e => {
   pages.reset();
   status.reset();
 });
+
+// handle delete button clicks
+const table = document.querySelector('table')
+table.addEventListener('click', e => {
+  let tr = e.target.parentElement.parentElement
+  library.removeBookByIndex(tr.dataset.bookIndex)
+})

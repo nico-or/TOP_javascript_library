@@ -16,7 +16,6 @@ The excercise objective is to practice javascript's prototies and DOM manipulati
 
 ## TODO
 - [ ] allow toggling of read status in table view (this should also modify the in-memory object)
-- [ ] allow deleting books in table view  (this should also delete them from the library collection)
 
 ---
 
