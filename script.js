@@ -1,30 +1,32 @@
-function Library(selector) {
-  this.node = document.getElementById(selector);
-  this.books = [];
+class Library {
+  constructor(selector) {
+    this.node = document.getElementById(selector);
+    this.books = [];
+  }
 
-  this.addBook = (book) => {
+  addBook = (book) => {
     this.books.push(book);
   };
 
-  this.removeBookByIndex = (index) => {
+  removeBookByIndex = (index) => {
     this.books.splice(index, 1);
     this.render();
   };
 
-  this.toggleStatusByIndex = (index) => {
+  toggleStatusByIndex = (index) => {
     const book = this.books[index];
     book.status = !book.status;
     this.render();
   };
 
   // deletes all books in the table
-  this.reset = () => {
+  reset = () => {
     const rows = Array.from(this.node.rows);
     rows.forEach((row) => row.remove());
   };
 
   // append all books to the table
-  this.render = () => {
+  render = () => {
     this.reset(); // avoid duplicates
     for (let i = 0; i < this.books.length; i++) {
       const book = this.books[i];
