@@ -12,14 +12,14 @@ function Library(selector) {
   };
 
   this.toggleStatusByIndex = (index) => {
-    book = this.books[index];
+    const book = this.books[index];
     book.status = !book.status;
     this.render();
   };
 
   // deletes all books in the table
   this.reset = () => {
-    let rows = Array.from(this.node.rows);
+    const rows = Array.from(this.node.rows);
     rows.forEach((row) => row.remove());
   };
 
@@ -28,7 +28,7 @@ function Library(selector) {
     this.reset(); // avoid duplicates
     for (let i = 0; i < this.books.length; i++) {
       const book = this.books[i];
-      let tr = document.createElement("tr");
+      const tr = document.createElement("tr");
 
       // FIXME library shouldn't have knowledge of representation
       tr.innerHTML = `
@@ -39,18 +39,18 @@ function Library(selector) {
       <td></td>`;
 
       // add book status checkbox
-      node = tr.children[3];
+      const statusColumn = tr.children[3];
       if (book.status == true) {
-        node.innerHTML = `Yes`;
+        statusColumn.innerHTML = `Yes`;
       } else {
-        node.innerHTML = `
+        statusColumn.innerHTML = `
           <label for="status_${i}">mark as read</label>
           <input type="checkbox" name="status" id="status_${i}" data-book-index=${i}>`;
       }
 
       // add delete button
-      node = tr.children[4];
-      node.innerHTML = `<button data-book-index=${i}>delete</button>`;
+      const buttonColumn = tr.children[4];
+      buttonColumn.innerHTML = `<button data-book-index=${i}>delete</button>`;
 
       // add row to table
       this.node.appendChild(tr);
