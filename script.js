@@ -2,7 +2,9 @@ function Library(selector) {
   this.node = document.getElementById(selector);
   this.books = [];
 
-  this.addBook = (book) => this.books.push(book);
+  this.addBook = (book) => {
+    this.books.push(book);
+  };
 
   this.removeBookByIndex = (index) => {
     this.books.splice(index, 1);
@@ -37,9 +39,9 @@ function Library(selector) {
       <td></td>`;
 
       // add book status checkbox
-      node = tr.children[3]
-      if (book.status == true){
-        node.innerHTML = `Yes`
+      node = tr.children[3];
+      if (book.status == true) {
+        node.innerHTML = `Yes`;
       } else {
         node.innerHTML = `
           <label for="status_${i}">mark as read</label>
@@ -125,7 +127,7 @@ form.addEventListener("submit", (e) => {
 const table = document.querySelector("table");
 table.addEventListener("click", (e) => {
   if (e.target.type == "submit") {
-    library.removeBookByIndex(e.target.dataset.bookIndex)
+    library.removeBookByIndex(e.target.dataset.bookIndex);
   }
 });
 
